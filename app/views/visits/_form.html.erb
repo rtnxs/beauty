@@ -8,6 +8,15 @@
     <%= f.input :datetime %>
     <%= f.input :visit_price %>
     <%= f.input :note %>
+    <div class="field">
+      <%= f.label "Area of Services" %><br />
+      <%= f.collection_check_boxes :service_ids, Service.all, :id, :name do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <div class="form-actions">
