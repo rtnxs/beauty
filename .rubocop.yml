@@ -1,0 +1,90 @@
+# All description here https://www.rubydoc.info/gems/rubocop/0.79.0/toplevel
+
+require:
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  TargetRailsVersion: 6.0.1
+  TargetRubyVersion: 2.6.3
+  DisplayCopNames: true
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - config/**/*
+    - tmp/**/*
+    - vendor/**/*
+    - coverage/**/*
+    - node_modules/**/*
+    - Rakefile
+    - Gemfile
+    - config.ru
+
+AssignmentInCondition:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 23
+
+Metrics/BlockLength:
+  Exclude:
+    - Guardfile
+    - config/**/*
+    - lib/tasks/*.rake
+    - spec/**/*
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 30
+
+Rails:
+  Enabled: true
+
+Rails/OutputSafety:
+  Exclude:
+    # TODO find solution
+    - app/helpers/bootstrap_flash_helper.rb
+
+RSpec/MultipleExpectations:
+  Max: 40
+
+RSpec/NestedGroups:
+  Max: 10
+
+Rails/HttpPositionalArguments:
+  Enabled: false
+
+Bundler/OrderedGems:
+  TreatCommentsAsGroupSeparators: true
+
+RSpec/ExampleLength:
+  Max: 40
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    # TODO find solution
+    - app/channels/application_cable/connection.rb
+    - app/channels/application_cable/channel.rb
+
+RSpec/EmptyExampleGroup:
+  CustomIncludeMethods:
+    - example_request
+
+Layout/HashAlignment:
+  EnforcedColonStyle: table
