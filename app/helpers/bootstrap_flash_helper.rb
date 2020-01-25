@@ -1,14 +1,18 @@
+# frozen_string_literal: true
+
 module BootstrapFlashHelper
-  ALERT_TYPES = [
-      :primary,
-      :secondary,
-      :success,
-      :danger,
-      :warning,
-      :info,
-      :light,
-      :dark,
-  ] unless const_defined?(:ALERT_TYPES)
+  unless const_defined?(:ALERT_TYPES)
+    ALERT_TYPES = %i[
+      primary
+      secondary
+      success
+      danger
+      warning
+      info
+      light
+      dark
+    ].freeze
+  end
 
   def bootstrap_flash(options = {})
     flash_messages = []
@@ -24,10 +28,10 @@ module BootstrapFlashHelper
 
       tag_class = options.extract!(:class)[:class]
       tag_options = {
-          class: "alert alert-#{type} #{tag_class}"
+        class: "alert alert-#{type} #{tag_class}"
       }.merge(options)
 
-      close_button = content_tag(:button, raw("&times;"), type: "button", class: "close", "data-dismiss" => "alert")
+      close_button = content_tag(:button, raw('&times;'), type: 'button', class: 'close', 'data-dismiss' => 'alert')
 
       Array(message).each do |msg|
         text = content_tag(:div, close_button + msg, tag_options)

@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "visits/show", type: :view do
-  before(:each) do
+RSpec.describe 'visits/show', type: :view do
+  before do
     @visit = assign(:visit, Visit.create!(
-      :client => nil,
-      :visit_price => "9.99",
-      :note => "Note"
-    ))
+                              client:      nil,
+                              visit_price: '9.99',
+                              note:        'Note'
+                            ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(//)
     expect(rendered).to match(/9.99/)

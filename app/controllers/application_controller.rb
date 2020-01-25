@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include Pundit
 
@@ -9,13 +11,13 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
-        :account_update,
-        keys: [:password, :password_confirmation, :current_password]
+      :account_update,
+      keys: %i[password password_confirmation current_password]
     )
 
     devise_parameter_sanitizer.permit(
-        :sign_up,
-        keys: [:name, :password, :password_confirmation, :current_password]
+      :sign_up,
+      keys: %i[name password password_confirmation current_password]
     )
   end
 
@@ -23,13 +25,13 @@ class ApplicationController < ActionController::Base
     user_signed_in? && (
     model.user == current_user ||
         (model.try(:event).present? && model.event.user == current_user)
-    )
+  )
   end
 
   private
 
   def user_not_authorized
     flash[:alert] = t('pundit.not_authorized')
-    redirect_to(request.referrer || root_path)
+    redirect_to(request.referer || root_path)
   end
 end

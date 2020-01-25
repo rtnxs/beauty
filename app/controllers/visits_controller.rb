@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class VisitsController < ApplicationController
-  before_action :set_visit, only: [:show, :edit, :update, :destroy]
+  before_action :set_visit, only: %i[show edit update destroy]
 
   # GET /visits
   # GET /visits.json
@@ -9,8 +11,7 @@ class VisitsController < ApplicationController
 
   # GET /visits/1
   # GET /visits/1.json
-  def show
-  end
+  def show; end
 
   # GET /visits/new
   def new
@@ -18,8 +19,7 @@ class VisitsController < ApplicationController
   end
 
   # GET /visits/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /visits
   # POST /visits.json
@@ -70,6 +70,6 @@ class VisitsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def visit_params
-    params.require(:visit).permit(:client_id, :datetime, :visit_price, :note, service_ids:[])
+    params.require(:visit).permit(:client_id, :datetime, :visit_price, :note, service_ids: [])
   end
 end
