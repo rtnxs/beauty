@@ -14,8 +14,12 @@ cache:
 
 before_script:
   - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev
+  - curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
   - curl -sL https://deb.nodesource.com/setup_10.x | bash -
+  - apt-get update
   - apt-get install -y nodejs
+  - apt-get install -y yarn
   - ruby -v
   - which ruby
   - gem install bundler  -v 2.1.2 --no-document
@@ -28,6 +32,8 @@ rspec:
   script:
     - cp config/database.yml.sample config/database.yml
     - bundle exec rake db:create db:schema:load
+    - yarn install
+    - RAILS_ENV=test ./bin/rails webpacker:compile
     - bundle exec rspec
   artifacts:
     paths:
