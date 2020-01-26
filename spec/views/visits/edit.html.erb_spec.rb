@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'visits/edit', type: :view do
   before do
     @visit = assign(:visit, Visit.create!(
-                              client:      nil,
+                              client:      create(:client),
                               visit_price: '9.99',
                               note:        'MyString'
                             ))
@@ -15,7 +15,6 @@ RSpec.describe 'visits/edit', type: :view do
     render
 
     assert_select 'form[action=?][method=?]', visit_path(@visit), 'post' do
-      assert_select 'input[name=?]', 'visit[client_id]'
 
       assert_select 'input[name=?]', 'visit[visit_price]'
 

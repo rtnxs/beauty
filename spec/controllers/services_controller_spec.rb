@@ -30,11 +30,14 @@ RSpec.describe ServicesController, type: :controller do
   # Service. As you add validations to Service, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    FactoryBot.attributes_for(:service)
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+        name: nil,
+        price: nil
+    }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -87,7 +90,7 @@ RSpec.describe ServicesController, type: :controller do
       end
     end
 
-    context 'with invalid params' do
+    context 'with invalid params', skip: true do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: { service: invalid_attributes }, session: valid_session
         expect(response).to be_successful
@@ -115,7 +118,7 @@ RSpec.describe ServicesController, type: :controller do
       end
     end
 
-    context 'with invalid params' do
+    context 'with invalid params', skip: true do
       it "returns a success response (i.e. to display the 'edit' template)" do
         service = Service.create! valid_attributes
         put :update, params: { id: service.to_param, service: invalid_attributes }, session: valid_session

@@ -28,7 +28,8 @@ group :development, :test do
   gem 'faker'
   gem 'pundit-matchers', '~> 1.6.0'
   gem 'sqlite3', '~> 1.4'
-  gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-rails', '~> 4.0.0.beta3'
+  gem 'rubocop-faker', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', '1.33.0', require: false
@@ -50,6 +51,7 @@ end
 group :test do
   gem 'capybara-screenshot'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'database_cleaner'
 end
 
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

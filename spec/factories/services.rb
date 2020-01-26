@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :service do
-    name { 'MyString' }
-    price { '9.99' }
+    name { Faker::Commerce.department }
+    price { Faker::Commerce.price }
   end
 end

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'visits/show', type: :view do
   before do
     @visit = assign(:visit, Visit.create!(
-                              client:      nil,
+                              client:      create(:client),
                               visit_price: '9.99',
                               note:        'Note'
                             ))

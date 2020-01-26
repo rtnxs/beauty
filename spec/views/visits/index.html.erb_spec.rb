@@ -6,12 +6,12 @@ RSpec.describe 'visits/index', type: :view do
   before do
     assign(:visits, [
              Visit.create!(
-               client:      nil,
+               client:      create(:client),
                visit_price: '9.99',
                note:        'Note'
              ),
              Visit.create!(
-               client:      nil,
+               client:      create(:client),
                visit_price: '9.99',
                note:        'Note'
              )

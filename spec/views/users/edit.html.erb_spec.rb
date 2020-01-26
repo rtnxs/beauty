@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'users/edit', type: :view do
   before do
     @user = assign(:user, User.create!(
-                            email:    'MyString',
+                            email:    'skdjfhsdkjfh@ya.ru',
                             password: 'MyString',
                             admin:    false
                           ))

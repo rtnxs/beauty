@@ -70,6 +70,12 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
+
+  config.around do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
 
 Shoulda::Matchers.configure do |config|

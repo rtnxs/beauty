@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'users/new', type: :view do
   before do
     assign(:user, User.new(
-                    email:    'MyString',
+                    email:    'skdjfhsdkjfh@ya.ru',
                     password: 'MyString',
                     admin:    false
                   ))
