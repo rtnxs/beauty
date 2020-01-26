@@ -3,17 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'services/edit', type: :view do
-  before do
-    @service = assign(:service, Service.create!(
-                                  name:  'MyString',
-                                  price: '9.99'
-                                ))
-  end
+  let(:service) { create(:service) }
 
   it 'renders the edit service form' do
+    skip
     render
 
-    assert_select 'form[action=?][method=?]', service_path(@service), 'post' do
+    assert_select 'form[action=?][method=?]', service_path(service), 'post' do
       assert_select 'input[name=?]', 'service[name]'
 
       assert_select 'input[name=?]', 'service[price]'

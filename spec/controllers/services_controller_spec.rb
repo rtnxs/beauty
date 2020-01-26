@@ -35,8 +35,8 @@ RSpec.describe ServicesController, type: :controller do
 
   let(:invalid_attributes) do
     {
-        name: nil,
-        price: nil
+      name:  nil,
+      price: nil
     }
   end
 
