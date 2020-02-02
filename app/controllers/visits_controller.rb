@@ -2,6 +2,7 @@
 
 class VisitsController < ApplicationController
   before_action :set_visit, only: %i[show edit update destroy]
+  protect_from_forgery except: :create
 
   # GET /visits
   # GET /visits.json
@@ -16,6 +17,7 @@ class VisitsController < ApplicationController
   # GET /visits/new
   def new
     @visit = Visit.new
+    @client = Client.new
   end
 
   # GET /visits/1/edit
@@ -25,14 +27,15 @@ class VisitsController < ApplicationController
   # POST /visits.json
   def create
     @visit = Visit.new(visit_params)
+    @client = Client.find_or_create_by(client_params)
+    @visit.client = @client
 
     respond_to do |format|
       if @visit.save
+        @visit.update!(visit_price: @visit.services.pluck(:price).sum)
         format.html { redirect_to @visit, notice: 'Visit was successfully created.' }
-        format.json { render :show, status: :created, location: @visit }
       else
         format.html { render :new }
-        format.json { render json: @visit.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +46,8 @@ class VisitsController < ApplicationController
     respond_to do |format|
       if @visit.update(visit_params)
         format.html { redirect_to @visit, notice: 'Visit was successfully updated.' }
-        format.json { render :show, status: :ok, location: @visit }
       else
         format.html { render :edit }
-        format.json { render json: @visit.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -71,5 +72,9 @@ class VisitsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def visit_params
     params.require(:visit).permit(:client_id, :datetime, :visit_price, :note, service_ids: [])
+  end
+
+  def client_params
+    params.require(:client).permit(:name, :phone)
   end
 end
