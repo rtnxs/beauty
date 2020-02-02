@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_25_163537) do
+ActiveRecord::Schema.define(version: 2020_02_02_161631) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,17 @@ ActiveRecord::Schema.define(version: 2020_01_25_163537) do
     t.string "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.integer "type_id", null: false
+    t.string "name"
+    t.decimal "price"
+    t.string "note"
+    t.datetime "datetime"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["type_id"], name: "index_expenses_on_type_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -30,6 +41,12 @@ ActiveRecord::Schema.define(version: 2020_01_25_163537) do
   create_table "services_visits", id: false, force: :cascade do |t|
     t.integer "service_id", null: false
     t.integer "visit_id", null: false
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,5 +73,6 @@ ActiveRecord::Schema.define(version: 2020_01_25_163537) do
     t.index ["client_id"], name: "index_visits_on_client_id"
   end
 
+  add_foreign_key "expenses", "types"
   add_foreign_key "visits", "clients"
 end
