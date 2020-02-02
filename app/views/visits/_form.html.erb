@@ -1,25 +1,26 @@
-
 <%= simple_form_for(@visit) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= simple_form_for(@client) do |c| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.association :client %>
-    <%= f.input :datetime %>
-    <%= f.input :visit_price %>
-    <%= f.input :note %>
-    <div class="field">
-      <%= f.label "Area of Services" %><br />
-      <%= f.collection_check_boxes :service_ids, Service.all, :id, :name do |b| %>
-        <div class="collection-check-box">
-          <%= b.check_box %>
-          <%= b.label %>
-        </div>
-      <% end %>
+    <div class="form-inputs">
+      <%= c.input :name %>
+      <%= c.input :phone %>
+      <%= f.input :datetime %>
+      <%= f.input :note %>
+      <div class="field">
+        <%= f.label "Area of Services" %><br/>
+        <%= f.collection_check_boxes :service_ids, Service.all, :id, :name_with_price do |b| %>
+          <div class="collection-check-box">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
 <% end %>
