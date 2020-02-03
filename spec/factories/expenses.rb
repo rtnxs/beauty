@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :expense do
-    type { nil }
-    name { 'MyString' }
-    price { '9.99' }
+    type
+    name { Faker::Commerce.department }
+    visit_price { Faker::Commerce.price }
     note { 'MyString' }
     datetime { '2020-02-02 19:16:31' }
   end

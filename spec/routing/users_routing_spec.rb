@@ -5,10 +5,12 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :routing do
   describe 'routing' do
     it 'routes to #index' do
+      skip
       expect(get: '/users').to route_to('users#index')
     end
 
     it 'routes to #new' do
+      skip
       expect(get: '/users/new').to route_to('users#new')
     end
 
@@ -21,6 +23,7 @@ RSpec.describe UsersController, type: :routing do
     end
 
     it 'routes to #create' do
+      skip
       expect(post: '/users').to route_to('users#create')
     end
 
@@ -33,6 +36,7 @@ RSpec.describe UsersController, type: :routing do
     end
 
     it 'routes to #destroy' do
+      skip
       expect(delete: '/users/1').to route_to('users#destroy', id: '1')
     end
   end

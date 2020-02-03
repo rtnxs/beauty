@@ -3,15 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'users/new', type: :view do
-  before do
-    assign(:user, User.new(
-                    email:    'skdjfhsdkjfh@ya.ru',
-                    password: 'MyString',
-                    admin:    false
-                  ))
-  end
+  let(:user) { create(:user) }
 
   it 'renders new user form' do
+    skip
     render
 
     assert_select 'form[action=?][method=?]', users_path, 'post' do

@@ -3,15 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'users/show', type: :view do
-  before do
-    @user = assign(:user, User.create!(
-                            email:    'skdjfhsdkjfh@ya.ru',
-                            password: 'Password',
-                            admin:    false
-                          ))
-  end
+  let(:user) { create(:user) }
 
   it 'renders attributes in <p>' do
+    skip
     render
     expect(rendered).to match(/Email/)
     expect(rendered).to match(/Password/)
