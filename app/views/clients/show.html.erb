@@ -1,19 +1,17 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Name:</strong>
+  <strong>Имя:</strong>
   <%= @client.name %>
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <strong>Телефон:</strong>
   <%= @client.phone %>
 </p>
 
 <p>
-  <strong>Note:</strong>
+  <strong>Примечание:</strong>
   <%= @client.note %>
 </p>
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+<%= link_to 'Изменить эту запись', edit_client_path(@client), class: 'btn btn-outline-warning' %> |
+<%= link_to 'Посмотреть все', clients_path, class: 'btn btn-outline-secondary' %>

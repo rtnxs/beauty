@@ -1,9 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Name:</strong>
+  <strong>Название:</strong>
   <%= @type.name %>
 </p>
-
-<%= link_to 'Edit', edit_type_path(@type) %> |
-<%= link_to 'Back', types_path %>
+<%= link_to 'Изменить эту запись', edit_type_path(@type), class: 'btn btn-outline-warning' %> |
+<%= link_to 'Посмотреть все', types_path, class: 'btn btn-outline-secondary' %>

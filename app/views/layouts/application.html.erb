@@ -7,16 +7,105 @@
 
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Font Awesome JS -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-9">
-      <%= bootstrap_flash %>
-      <%= yield %>
+
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>Доступные разделы</h3>
+    </div>
+    <ul class="list-unstyled components">
+      <li>
+        <%= link_to 'В начало', root_path %>
+      </li>
+      <li>
+        <a href="#visitSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Визиты</a>
+        <ul class="collapse list-unstyled" id="visitSubmenu">
+          <li>
+            <%= link_to 'Список всех визитов', visits_path %>
+          </li>
+          <li>
+            <%= link_to 'Добавить новый визит', new_visit_path %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#expenseSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Расходы</a>
+        <ul class="collapse list-unstyled" id="expenseSubmenu">
+          <li>
+            <%= link_to 'Список всех расходов', expenses_path %>
+          </li>
+          <li>
+            <%= link_to 'Добавить новый расход', new_expense_path %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#clientSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Клиенты</a>
+        <ul class="collapse list-unstyled" id="clientSubmenu">
+          <li>
+            <%= link_to 'Список всех клиентов', clients_path %>
+          </li>
+          <li>
+            <%= link_to 'Добавить новго клиента', new_client_path %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Справочники</a>
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+          <li>
+            <%= link_to 'Список услуг', services_path %>
+          </li>
+          <li>
+            <%= link_to 'Тип расхода', types_path %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+      <% if user_signed_in? %>
+        <%= link_to 'Выйти', destroy_user_session_path,
+                    method: :delete, class: 'btn btn-info navbar-btn' %>
+      <% else %>
+        <%= link_to 'Войти', new_user_session_path, class: 'btn btn-info navbar-btn' %>
+      <% end %>
+    </ul>
+  </nav>
+
+  <!-- Page Content  -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-info">
+              <i class="fas fa-align-left"></i>
+              <span>Меню</span>
+            </button>
+          </div>
+        </nav>
+
+        <div class="alert-message">
+          <%= bootstrap_flash %>
+        </div>
+
+        <%= yield %>
+      </div>
     </div>
   </div>
+
 </div>
+
 </body>
 </html>

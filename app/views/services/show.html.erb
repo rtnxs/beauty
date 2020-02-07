@@ -1,14 +1,12 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Name:</strong>
+  <strong>Название:</strong>
   <%= @service.name %>
 </p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>Цена:</strong>
   <%= @service.price %>
 </p>
 
-<%= link_to 'Edit', edit_service_path(@service) %> |
-<%= link_to 'Back', services_path %>
+<%= link_to 'Изменить эту запись', edit_service_path(@service), class: 'btn btn-outline-warning' %> |
+<%= link_to 'Посмотреть все', services_path, class: 'btn btn-outline-secondary' %>
