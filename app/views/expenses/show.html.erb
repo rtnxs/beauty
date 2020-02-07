@@ -1,29 +1,28 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Type:</strong>
+  <strong>Тип расхода:</strong>
   <%= @expense.type_id %>
 </p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Название:</strong>
   <%= @expense.name %>
 </p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>Цена:</strong>
   <%= @expense.price %>
 </p>
 
 <p>
-  <strong>Note:</strong>
+  <strong>Примечание:</strong>
   <%= @expense.note %>
 </p>
 
 <p>
-  <strong>Datetime:</strong>
+  <strong>Дата расхода:</strong>
   <%= @expense.datetime %>
 </p>
 
-<%= link_to 'Edit', edit_expense_path(@expense) %> |
-<%= link_to 'Back', expenses_path %>
+
+<%= link_to 'Изменить эту запись', edit_expense_path(@expense) , class: 'btn btn-outline-warning' %> |
+<%= link_to 'Посмотреть все', expenses_path, class: 'btn btn-outline-secondary' %>

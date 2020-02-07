@@ -1,24 +1,22 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Client:</strong>
-  <%= @visit.client_id %>
+  <strong>Клиент:</strong>
+  <%= @visit.client.name %>, тел - <%= @visit.client.phone %>
 </p>
 
 <p>
-  <strong>Datetime:</strong>
+  <strong>Время визита:</strong>
   <%= @visit.datetime %>
 </p>
 
 <p>
-  <strong>Visit price:</strong>
+  <strong>Цена визита:</strong>
   <%= @visit.visit_price %>
 </p>
 
 <p>
-  <strong>Note:</strong>
+  <strong>Примечание:</strong>
   <%= @visit.note %>
 </p>
 
-<%= link_to 'Edit', edit_visit_path(@visit) %> |
-<%= link_to 'Back', visits_path %>
+<%= link_to 'Изменить эту запись', edit_visit_path(@visit), class: 'btn btn-outline-warning' %> |
+<%= link_to 'Посмотреть все', visits_path, class: 'btn btn-outline-secondary' %>
