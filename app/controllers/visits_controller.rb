@@ -9,16 +9,14 @@ class VisitsController < ApplicationController
     @visits = @q.result
   end
 
-  def show;
-  end
+  def show; end
 
   def new
     @visit = Visit.new
     @client = @visit.build_client
   end
 
-  def edit;
-  end
+  def edit; end
 
   def create
     @visit = Visit.new(visit_params)
@@ -60,6 +58,13 @@ class VisitsController < ApplicationController
   end
 
   def visit_params
-    params.require(:visit).permit(:client_id, :datetime, :visit_price, :note, service_ids: [], client_attributes: [:id, :name, :phone])
+    params.require(:visit).permit(
+      :client_id,
+      :datetime,
+      :visit_price,
+      :note,
+      service_ids:       [],
+      client_attributes: %i[id name phone]
+    )
   end
 end

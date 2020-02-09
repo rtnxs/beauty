@@ -13,9 +13,9 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.email %></td>
-        <td><%= user.password %></td>
-        <td><%= user.admin %></td>
+        <td class="align-middle"><%= user.email %></td>
+        <td class="align-middle"><%= user.password %></td>
+        <td class="align-middle"><%= user.admin %></td>
         <td>
           <%= link_to 'Изменить', edit_user_path(user), class: 'btn btn-outline-warning btn-block' %><br>
           <%= link_to 'Удалить', user, method: :delete, data: { confirm: 'Уверены?' }, class: 'btn btn-outline-danger btn-block' %>

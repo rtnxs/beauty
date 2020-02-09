@@ -15,8 +15,8 @@
   <tbody>
     <% @services.each do |service| %>
       <tr>
-        <td><%= service.name %></td>
-        <td><%= service.price %></td>
+        <td class="align-middle"><%= service.name %></td>
+        <td class="align-middle"><%= service.price %></td>
         <td>
           <%= link_to 'Изменить', edit_service_path(service), class: 'btn btn-outline-warning btn-block' %><br>
           <%= link_to 'Удалить', service, method: :delete, data: { confirm: 'Уверены?' }, class: 'btn btn-outline-danger btn-block' %>

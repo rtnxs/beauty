@@ -1,10 +1,22 @@
 <%= search_form_for @q do |f| %>
-  <%#= f.label :visit_price_eq %>
-  <%#= f.search_field :visit_price_eq %>
-  <%=  f.label 'Date Vibery' %>
-  <%= f.search_field :created_at_gteq, class: 'form-control', data: { behavior: "flatpickr" } %>
-  <%= f.search_field :created_at_lteq, class: 'form-control', data: { behavior: "flatpickr" } %>
-  <%= f.submit %>
+
+    <div class="row align-items-center h-100 mb-5">
+      <div class="col-lg-3">
+        <%=  f.label 'Дата начала' %>
+        <%= f.search_field :datetime_gteq, class: 'form-control', data: { behavior: "flatpickr" } %>
+      </div>
+      <div class="col-lg-3">
+        <%=  f.label 'Дата окончания' %>
+        <%= f.search_field :datetime_lteq, class: 'form-control', data: { behavior: "flatpickr" } %>
+      </div>
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-2 mx-auto">
+        <div class="form-actions">
+          <%= f.submit "Поиск", class: 'btn btn btn-info btn-block' %>
+        </div>
+      </div>
+    </div>
 <% end %>
 
 <h1>Список всех визитов</h1>
@@ -23,10 +35,10 @@
   <tbody>
     <% @visits.each do |visit| %>
       <tr>
-        <td><%= visit.client.name %></td>
-        <td><%= visit.datetime %></td>
-        <td><%= visit.visit_price %></td>
-        <td><%= visit.note %></td>
+        <td class="align-middle"><%= visit.client.name %></td>
+        <td class="align-middle"><%= visit.datetime.strftime('%Y.%m.%d %H:%M') %></td>
+        <td class="align-middle"><%= visit.visit_price %></td>
+        <td class="align-middle"><%= visit.note %></td>
         <td>
           <%= link_to 'Изменить', edit_visit_path(visit), class: 'btn btn-outline-warning btn-block' %><br>
           <%= link_to 'Удалить', visit, method: :delete, data: { confirm: 'Уверены?' }, class: 'btn btn-outline-danger btn-block' %>

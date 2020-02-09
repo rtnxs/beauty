@@ -15,9 +15,9 @@
   <tbody>
     <% @clients.each do |client| %>
       <tr>
-        <td><%= client.name %></td>
-        <td><%= client.phone %></td>
-        <td><%= client.note %></td>
+        <td class="align-middle"><%= client.name %></td>
+        <td class="align-middle"><%= client.phone %></td>
+        <td class="align-middle"><%= client.note %></td>
         <td>
           <%= link_to 'Изменить', edit_client_path(client), class: 'btn btn-outline-warning btn-block' %><br>
           <%= link_to 'Удалить', client, method: :delete, data: { confirm: 'Уверены?' }, class: 'btn btn-outline-danger btn-block' %>
