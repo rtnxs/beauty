@@ -5,7 +5,8 @@ class VisitsController < ApplicationController
   protect_from_forgery except: :create
 
   def index
-    @visits = Visit.all
+    @q = Visit.ransack(params[:q])
+    @visits = @q.result
   end
 
   def show;

@@ -1,3 +1,12 @@
+<%= search_form_for @q do |f| %>
+  <%#= f.label :visit_price_eq %>
+  <%#= f.search_field :visit_price_eq %>
+  <%=  f.label 'Date Vibery' %>
+  <%= f.search_field :created_at_gteq, class: 'form-control', data: { behavior: "flatpickr" } %>
+  <%= f.search_field :created_at_lteq, class: 'form-control', data: { behavior: "flatpickr" } %>
+  <%= f.submit %>
+<% end %>
+
 <h1>Список всех визитов</h1>
 
 <table class="table table-hover">
@@ -25,4 +34,6 @@
       </tr>
     <% end %>
   </tbody>
+
+
 </table>
