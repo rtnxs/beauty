@@ -1,26 +1,26 @@
 <%= simple_form_for(@visit) do |f| %>
-  <%= simple_form_for(@client) do |c| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <div class="form-inputs">
+  <div class="form-inputs">
+    <%= f.simple_fields_for :client do |c| %>
       <%= c.input :name %>
       <%= c.input :phone %>
-      <%= f.input :datetime %>
-      <%= f.input :note %>
-      <div class="field">
-        <%= f.label "Area of Services" %><br/>
-        <%= f.collection_check_boxes :service_ids, Service.all, :id, :name_with_price do |b| %>
-          <div class="collection-check-box">
-            <%= b.check_box %>
-            <%= b.label %>
-          </div>
-        <% end %>
-      </div>
+    <% end %>
+    <%= f.input :datetime %>
+    <%= f.input :note %>
+    <div class="field">
+      <%= f.label "Area of Services" %><br/>
+      <%= f.collection_check_boxes :service_ids, Service.all, :id, :name_with_price do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
     </div>
+  </div>
 
-    <div class="form-actions">
-      <%= f.submit 'Сохранить запись', class: 'btn btn btn-success btn-block' %>
-    </div>
-  <% end %>
+  <div class="form-actions">
+    <%= f.submit 'Сохранить запись', class: 'btn btn btn-success btn-block' %>
+  </div>
 <% end %>

@@ -15,11 +15,11 @@
   <tbody>
     <% @expenses.each do |expense| %>
       <tr>
-        <td><%= expense.type_id %></td>
-        <td><%= expense.name %></td>
-        <td><%= expense.price %></td>
-        <td><%= expense.note %></td>
-        <td><%= expense.datetime %></td>
+        <td class="align-middle"><%= expense.type_id %></td>
+        <td class="align-middle"><%= expense.name %></td>
+        <td class="align-middle"><%= expense.price %></td>
+        <td class="align-middle"><%= expense.note %></td>
+        <td class="align-middle"><%= expense.datetime.strftime('%Y.%m.%d %H:%M') %></td>
         <td>
           <%= link_to 'Изменить', edit_expense_path(expense), class: 'btn btn-outline-warning btn-block' %><br>
           <%= link_to 'Удалить', expense, method: :delete, data: { confirm: 'Уверены?' }, class: 'btn btn-outline-danger btn-block' %>

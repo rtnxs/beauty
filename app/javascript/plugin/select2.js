@@ -18,6 +18,6 @@ $(() => {
     );
 });
 
-// $(window).on('turbolinks:load', () => {
-//     initSelect();
-// });
+$(window).on('turbolinks:load', () => {
+    initSelect();
+});

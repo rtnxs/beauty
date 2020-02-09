@@ -14,7 +14,7 @@
   <tbody>
     <% @types.each do |type| %>
       <tr>
-        <td><%= type.name %></td>
+        <td class="align-middle"><%= type.name %></td>
         <td>
           <%= link_to 'Изменить', edit_type_path(type), class: 'btn btn-outline-warning btn-block' %><br>
           <%= link_to 'Удалить', type, method: :delete, data: { confirm: 'Уверены?' }, class: 'btn btn-outline-danger btn-block' %>
