@@ -1,0 +1,60 @@
+<h1>Список всех визитов</h1>
+
+<table class="table table-hover">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">Имя клиента</th>
+    <th scope="col">Время визита</th>
+    <th scope="col">Цена визита</th>
+    <th scope="col">Примечание</th>
+    <th scope="col">Опции</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @visits.each do |visit| %>
+    <tr>
+      <td><%= visit.client.name %></td>
+      <td><%= visit.datetime %></td>
+      <td><%= visit.visit_price %></td>
+      <td><%= visit.note %></td>
+      <td>
+        <%= link_to 'Изменить', edit_visit_path(visit), class: 'btn btn-outline-warning btn-block' %><br>
+        <%= link_to 'Удалить', visit, method: :delete, data: { confirm: 'Уверены?' }, class: 'btn btn-outline-danger btn-block' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h1>Расходы</h1>
+
+<table class="table table-hover">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">Тип</th>
+    <th scope="col">Название</th>
+    <th scope="col">Цена</th>
+    <th scope="col">Примечание</th>
+    <th scope="col">Дата</th>
+    <th scope="col">Опции</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @expenses.each do |expense| %>
+    <tr>
+      <td><%= expense.type_id %></td>
+      <td><%= expense.name %></td>
+      <td><%= expense.price %></td>
+      <td><%= expense.note %></td>
+      <td><%= expense.datetime %></td>
+      <td>
+        <%= link_to 'Изменить', edit_expense_path(expense), class: 'btn btn-outline-warning btn-block' %><br>
+        <%= link_to 'Удалить', expense, method: :delete, data: { confirm: 'Уверены?' }, class: 'btn btn-outline-danger btn-block' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
