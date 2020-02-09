@@ -4,30 +4,25 @@ class VisitsController < ApplicationController
   before_action :set_visit, only: %i[show edit update destroy]
   protect_from_forgery except: :create
 
-  # GET /visits
-  # GET /visits.json
   def index
     @visits = Visit.all
   end
 
-  # GET /visits/1
-  # GET /visits/1.json
-  def show; end
-
-  # GET /visits/new
-  def new
-    @visit = Visit.new
-    @client = Client.new
+  def show;
   end
 
-  # GET /visits/1/edit
-  def edit; end
+  def new
+    @visit = Visit.new
+    @client = @visit.build_client
+  end
 
-  # POST /visits
-  # POST /visits.json
+  def edit;
+  end
+
   def create
     @visit = Visit.new(visit_params)
-    @client = Client.find_or_create_by(client_params)
+    @client = Client.find_or_create_by(visit_params[:client_attributes])
+
     @visit.client = @client
 
     respond_to do |format|
@@ -40,8 +35,6 @@ class VisitsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /visits/1
-  # PATCH/PUT /visits/1.json
   def update
     respond_to do |format|
       if @visit.update(visit_params)
@@ -52,8 +45,6 @@ class VisitsController < ApplicationController
     end
   end
 
-  # DELETE /visits/1
-  # DELETE /visits/1.json
   def destroy
     @visit.destroy
     respond_to do |format|
@@ -63,17 +54,11 @@ class VisitsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_visit
     @visit = Visit.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def visit_params
-    params.require(:visit).permit(:client_id, :datetime, :visit_price, :note, service_ids: [])
-  end
-
-  def client_params
-    params.require(:client).permit(:name, :phone)
+    params.require(:visit).permit(:client_id, :datetime, :visit_price, :note, service_ids: [], client_attributes: [:id, :name, :phone])
   end
 end
