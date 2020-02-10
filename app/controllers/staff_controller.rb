@@ -2,7 +2,15 @@
 
 class StaffController < ApplicationController
   def index
-    @visits = Visit.all
-    @expenses = Expense.all
+    @visits = Visit.where(
+      'datetime BETWEEN ? AND ?',
+      Time.current.beginning_of_month,
+      Time.current.end_of_month
+    ).order('datetime DESC')
+    @expenses = Expense.where(
+      'datetime BETWEEN ? AND ?',
+      Time.current.beginning_of_month,
+      Time.current.end_of_month
+    ).order('datetime DESC')
   end
 end

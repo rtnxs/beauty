@@ -6,7 +6,8 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.all
+    @q = Expense.ransack(params[:q])
+    @expenses = @q.result.includes(:type)
   end
 
   # GET /expenses/1
