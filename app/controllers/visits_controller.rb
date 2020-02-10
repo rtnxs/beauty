@@ -6,7 +6,7 @@ class VisitsController < ApplicationController
 
   def index
     @q = Visit.ransack(params[:q])
-    @visits = @q.result
+    @visits = @q.result.order('datetime DESC').includes(:client)
   end
 
   def show; end

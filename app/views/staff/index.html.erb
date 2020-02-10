@@ -1,6 +1,33 @@
+<div class="row mb-5">
+  <div class="col-lg-4">
+    <div class="card border-warning text-center mb-3">
+      <div class="card-header">Доходы</div>
+      <div class="card-body text-warning">
+        <h1 class="card-title"><%= @visits.pluck(:visit_price).sum %></h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card border-danger text-center mb-3">
+      <div class="card-header">Расходы</div>
+      <div class="card-body text-danger">
+        <h1 class="card-title"><%= @expenses.pluck(:price).sum %></h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card border-success text-center mb-3">
+      <div class="card-header">Чистыми</div>
+      <div class="card-body text-success">
+        <h1 class="card-title"><%= @visits.pluck(:visit_price).sum - @expenses.pluck(:price).sum %></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-lg-6">
-    <h1>Список всех визитов</h1>
+    <h1>Визиты за этот месяц</h1>
 
     <table class="table table-hover">
       <thead class="thead-light">
@@ -24,7 +51,7 @@
   </div>
 
   <div class="col-lg-6">
-    <h1>Расходы</h1>
+    <h1>Расходы за этот месяц</h1>
 
     <table class="table table-hover">
       <thead class="thead-light">
@@ -39,7 +66,7 @@
       <tbody>
       <% @expenses.each do |expense| %>
         <tr>
-          <td class="align-middle"><%= expense.type_id %></td>
+          <td class="align-middle"><%= expense.type.name %></td>
           <td class="align-middle"><%= expense.name %></td>
           <td class="align-middle"><%= expense.price %></td>
           <td class="align-middle"><%= expense.datetime.strftime('%Y.%m.%d %H:%M') %></td>
