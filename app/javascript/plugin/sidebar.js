@@ -4,6 +4,6 @@ function initMenuCollaps() {
     });
 }
 
-$(window).on('turbolinks:load', () => {
-    $(document).ready(initMenuCollaps())
+document.addEventListener("turbolinks:load", () => {
+    initMenuCollaps()
 });

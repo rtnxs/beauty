@@ -12,12 +12,8 @@ function initSelect() {
     });
 }
 
-$(() => {
+document.addEventListener("turbolinks:load", () => {
     initSelect(
         $(document).ready(function() { $("#visit_client_id").select2(); })
     );
-});
-
-$(window).on('turbolinks:load', () => {
-    initSelect();
 });
