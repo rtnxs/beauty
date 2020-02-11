@@ -3,5 +3,25 @@
 require 'rails_helper'
 
 RSpec.describe Expense, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:expense) { create(:expense) }
+
+  it { expect(expense).to be_valid }
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to belong_to(:type) }
+  it { is_expected.to validate_presence_of(:price) }
+  it { is_expected.to validate_presence_of(:datetime) }
+  it { is_expected.to validate_length_of(:name).is_at_most(40) }
+  it { is_expected.to allow_value('lebosky where is my money').for(:name) }
+  it { is_expected.not_to allow_value('@lebosky where my money?').for(:name) }
+  it { is_expected.not_to allow_value('"Трата"').for(:name) }
+  it { is_expected.not_to allow_value('!@#$%^&*()/"][{}?`~').for(:name) }
+
+  it 'validate price' do
+    skip 'Expect it will be fixed'
+    aggregate_failures 'expected validation on price' do
+      expect(expense).to validate_numericality_of(:price)
+      expect(expense).to allow_value('"Трата"').for(:price)
+      expect(expense).to allow_value('!@#$%^&*()/"][{}?`~').for(:price)
+    end
+  end
 end
