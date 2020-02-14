@@ -41,12 +41,12 @@ RSpec.describe 'Expenses', type: :request do
 
   it 'update Expense' do
     patch "/expenses/#{expense.id}", params: {
-        expense: {
-            type_id:  expense.type.id,
-            name:     Faker::Commerce.department,
-            price:    Faker::Commerce.price,
-            datetime: '2020-12-02 19:16:31'
-        }
+      expense: {
+        type_id:  expense.type.id,
+        name:     Faker::Commerce.department,
+        price:    Faker::Commerce.price,
+        datetime: '2020-12-02 19:16:31'
+      }
     }
     expect(response).to have_http_status(302)
     follow_redirect!
