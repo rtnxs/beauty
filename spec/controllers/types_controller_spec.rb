@@ -74,7 +74,7 @@ RSpec.describe TypesController, type: :controller do
         type = Type.create! valid_attributes
         put :update, params: { id: type.to_param, type: new_attributes }, session: valid_session
         type.reload
-        skip('Add assertions for updated state')
+        expect(response).to redirect_to(type)
       end
 
       it 'redirects to the type' do

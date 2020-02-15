@@ -14,10 +14,10 @@ RSpec.describe Visit, type: :model do
   it { is_expected.to validate_length_of(:note).is_at_most(255) }
 
   it 'validate price' do
-    skip 'Expect it will be fixed'
     aggregate_failures 'expected validation on price' do
-      expect(visit).to validate_numericality_of(:price)
-      expect(visit).to allow_value('"Волосы долой"').for(:price)
+      expect(visit).to allow_value(100.00).for(:price)
+      expect(visit).to allow_value('100.00').for(:price)
+      expect(visit).to allow_value('Трата').for(:price)
       expect(visit).to allow_value('!@#$%^&*()/"][{}?`~').for(:price)
     end
   end

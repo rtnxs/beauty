@@ -59,7 +59,7 @@ RSpec.describe ServicesController, type: :controller do
       end
     end
 
-    context 'with invalid params', skip: true do
+    context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: { service: invalid_attributes }, session: valid_session
         expect(response).to be_successful
@@ -87,11 +87,11 @@ RSpec.describe ServicesController, type: :controller do
       end
     end
 
-    context 'with invalid params', skip: true do
+    context 'with invalid params' do
       it "returns a success response (i.e. to display the 'edit' template)" do
         service = Service.create! valid_attributes
         put :update, params: { id: service.to_param, service: invalid_attributes }, session: valid_session
-        expect(response).to redirect_to(:edit_service_path)
+        expect(response).to be_successful
       end
     end
   end
