@@ -3,16 +3,31 @@
 require 'rails_helper'
 
 RSpec.describe 'visits/new', type: :view do
-  let(:visit) { create(:visit) }
+  let(:client_visit) { create(:visit) }
+  let!(:service1) { create(:service) }
+  let!(:service2) { create(:service) }
 
   it 'renders new visit form' do
-    skip
-    render
+    visit new_visit_path
 
-    assert_select 'form[action=?][method=?]', visits_path, 'post' do
-      assert_select 'input[name=?]', 'visit[visit_price]'
+    aggregate_failures 'expected result' do
+      expect(page).to have_content('Создать новый визит')
+      expect(page).to have_content('Name')
+      expect(page).to have_content('Phone')
+      expect(page).to have_content('Datetime')
+      expect(page).to have_content('Note')
+      expect(page).to have_content('Area of services')
+      expect(page).to have_content("#{service1.name} (#{service1.price}")
+      expect(page).to have_content("#{service2.name} (#{service2.price}")
+      expect(page.find(:xpath, "//div[@class='form-actions']/input").value).to eql('Сохранить запись')
+      expect(page).to have_content('Для возврата к общему списку клиентов - воспользуйся меню слева')
 
-      assert_select 'input[name=?]', 'visit[note]'
+      expect(page).to have_content('Доступные разделы')
+      expect(page).to have_content('В начало')
+      expect(page).to have_content('Добавить новый визит')
+      expect(page).to have_content('Добавить новый расход')
+      expect(page).to have_content('Справочники')
+      expect(page).to have_content('Войти')
     end
   end
 end

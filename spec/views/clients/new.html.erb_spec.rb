@@ -3,18 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe 'clients/new', type: :view do
-  let(:client) { create(:client) }
-
   it 'renders new client form' do
-    skip
-    render
+    visit new_client_path
 
-    assert_select 'form[action=?][method=?]', clients_path, 'post' do
-      assert_select 'input[name=?]', 'client[name]'
+    expect(page).to have_content('Новый клиент')
+    expect(page).to have_content('Name')
+    expect(page).to have_content('Phone')
+    expect(page).to have_content('Note')
+    expect(page.find(:xpath, "//div[@class='form-actions']/input").value).to eql('Сохранить запись')
+    expect(page).to have_content('Для возврата к общему списку клиентов - воспользуйся меню слева')
 
-      assert_select 'input[name=?]', 'client[phone]'
-
-      assert_select 'input[name=?]', 'client[note]'
-    end
+    expect(page).to have_content('Доступные разделы')
+    expect(page).to have_content('В начало')
+    expect(page).to have_content('Добавить новый визит')
+    expect(page).to have_content('Добавить новый расход')
+    expect(page).to have_content('Справочники')
+    expect(page).to have_content('Войти')
   end
 end

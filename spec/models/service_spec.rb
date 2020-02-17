@@ -16,10 +16,10 @@ RSpec.describe Service, type: :model do
   it { is_expected.not_to allow_value('!@#$%^&*()/"][{}?`~').for(:name) }
 
   it 'validate price' do
-    skip 'Expect it will be fixed'
     aggregate_failures 'expected validation on price' do
-      expect(service).to validate_numericality_of(:price)
-      expect(service).to allow_value('"Волосы долой"').for(:price)
+      expect(service).to allow_value(100.00).for(:price)
+      expect(service).to allow_value('100.00').for(:price)
+      expect(service).to allow_value('Трата').for(:price)
       expect(service).to allow_value('!@#$%^&*()/"][{}?`~').for(:price)
     end
   end
