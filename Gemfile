@@ -17,6 +17,7 @@ gem 'sass-rails', '>= 6'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
+gem 'webdrivers', '~> 4.0'
 
 group :production do
   gem 'pg'

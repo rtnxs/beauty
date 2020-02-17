@@ -7,8 +7,6 @@ class Service < ApplicationRecord
   validates :name, length: { maximum: 40 }, format: { with: USERNAME_REGEXP }
   validates :price, format: { with: DECIMAL_REGEXP }
 
-  private
-
   def name_with_price
     "#{name} (#{price})"
   end

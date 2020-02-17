@@ -3,17 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe 'types/new', type: :view do
-  before do
-    assign(:type, Type.new(
-                    name: 'MyString'
-                  ))
-  end
-
   it 'renders new type form' do
-    render
+    visit new_type_path
 
-    assert_select 'form[action=?][method=?]', types_path, 'post' do
-      assert_select 'input[name=?]', 'type[name]'
+    aggregate_failures 'expected result' do
+      expect(page).to have_content('Добавить новый расход')
+      expect(page).to have_content('Name')
+      expect(page.find(:xpath, "//div[@class='form-actions']/input").value).to eql('Сохранить запись')
+      expect(page).to have_content('Назад')
+
+      expect(page).to have_content('Доступные разделы')
+      expect(page).to have_content('В начало')
+      expect(page).to have_content('Добавить новый визит')
+      expect(page).to have_content('Добавить новый расход')
+      expect(page).to have_content('Справочники')
+      expect(page).to have_content('Войти')
     end
   end
 end

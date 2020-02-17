@@ -3,22 +3,23 @@
 require 'rails_helper'
 
 RSpec.describe 'services/index', type: :view do
-  before do
-    assign(:services, [
-             Service.create!(
-               name:  'Name',
-               price: '9.99'
-             ),
-             Service.create!(
-               name:  'Name',
-               price: '9.99'
-             )
-           ])
-  end
+  let(:service) { create(:service) }
 
   it 'renders a list of services' do
-    render
-    assert_select 'tr>td', text: 'Name'.to_s, count: 2
-    assert_select 'tr>td', text: '9.99'.to_s, count: 2
+    expect(service).to eql(Service.last)
+    visit services_path
+
+    aggregate_failures 'expected result' do
+      expect(page.find(:xpath, '//tbody/tr/td[1]').text).to eql(service.name)
+      expect(page.find(:xpath, '//tbody/tr/td[2]').text).to eql(service.price.to_s)
+      expect(page.find(:xpath, '//tbody/tr/td[3]').text).to eql('Изменить Удалить')
+
+      expect(page).to have_content('Доступные разделы')
+      expect(page).to have_content('В начало')
+      expect(page).to have_content('Добавить новый визит')
+      expect(page).to have_content('Добавить новый расход')
+      expect(page).to have_content('Справочники')
+      expect(page).to have_content('Войти')
+    end
   end
 end

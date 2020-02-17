@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :service do
-    name { Faker::Commerce.department }
+    name { Faker::Company.industry }
     price { Faker::Commerce.price }
   end
 end

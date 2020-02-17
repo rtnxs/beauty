@@ -12,6 +12,7 @@ require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'pundit/rspec'
 require 'pundit/matchers'
+require 'webdrivers/chromedriver'
 
 SimpleCov.start
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -87,3 +88,12 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+Capybara.register_driver :chrome do |app|
+  chrome_options = Selenium::WebDriver::Chrome::Options.new(args: %w[headless start-maximized])
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
+end
+
+Capybara.javascript_driver = :chrome
+Capybara.server_port = 3001
+Capybara.app_host = 'http://localhost:3001'
