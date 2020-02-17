@@ -4,8 +4,8 @@
     rails-versiion = Rails 6.0.1
 
 # Badges
-[![pipeline status](https://gitlab.com/MrBeean/beauty_crm/badges/master/pipeline.svg)](https://gitlab.com/MrBeean/beauty_crm/commits/master)
-[![coverage report](https://gitlab.com/MrBeean/beauty_crm/badges/master/coverage.svg)](https://gitlab.com/MrBeean/beauty_crm/commits/master)
+[![pipeline status](https://gitlab.com/MrBeean/beauty/badges/develop/pipeline.svg)](https://gitlab.com/MrBeean/beauty/-/commits/develop)
+[![coverage report](https://gitlab.com/MrBeean/beauty/badges/develop/coverage.svg)](https://gitlab.com/MrBeean/beauty/-/commits/develop)
 
 ## Installation
 
