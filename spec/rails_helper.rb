@@ -96,4 +96,4 @@ end
 
 Capybara.javascript_driver = :chrome
 Capybara.server_port = 4444
-Capybara.app_host = ENV['selenium_remote_url'] ? 'http://localhost:4444' : 'http://localhost:4444'
+Capybara.app_host = (ENV['selenium_remote_url'] || 'http://localhost:4444')
