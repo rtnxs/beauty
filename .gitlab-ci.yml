@@ -11,6 +11,8 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - vendor/bundle
+services:
+  - selenium/standalone-chrome:latest
 
 before_script:
   - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev
@@ -32,7 +34,7 @@ rspec:
   script:
     - cp config/database.yml.sample config/database.yml
     - bundle exec rake db:create db:schema:load
-    - apt-get install -y chromium
+    - export selenium_remote_url="http://selenium__standalone-chrome:4444/wd/hub/"
     - yarn install
     - RAILS_ENV=test ./bin/rails webpacker:compile
     - bundle exec rspec

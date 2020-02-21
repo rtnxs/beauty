@@ -10,7 +10,7 @@ RSpec.describe 'visits/edit', type: :feature, js: true do
   end
 
   it 'changes client for visit' do
-    skip('Until has problem with chromium in GitLub')
+    # skip('Until has problem with chromium in GitLub')
     visit edit_visit_path(client_visit)
     page.find(:xpath, "//span[@class='select2-selection__arrow']").click
     page.find(:xpath, "//input[@class='select2-search__field']").set('пуш')
