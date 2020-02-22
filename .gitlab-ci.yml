@@ -32,7 +32,7 @@ build:
     - apt-get install -y yarn
     - ruby -v
     - which ruby
-    - gem install bundler -v 2.1.2 --no-rdoc
+    - gem install bundler  -v 2.1.2 --no-document
     - bundle config set without 'production'
     - bundle check || bundle install --jobs $(nproc)
 
@@ -40,7 +40,7 @@ rubocop:
   <<: *default-cache
   stage: rubocop
   script:
-    - gem install bundler -v 2.1.2 --no-rdoc
+    - gem install bundler  -v 2.1.2 --no-document
     - bundle config set without 'production'
     - bundle check || bundle install --jobs $(nproc)
     - bundle exec rubocop --require rubocop-performance
@@ -49,7 +49,7 @@ unit_rspec:
   <<: *default-cache
   stage: tests
   script:
-    - gem install bundler -v 2.1.2 --no-rdoc
+    - gem install bundler  -v 2.1.2 --no-document
     - bundle config set without 'production'
     - bundle check || bundle install --jobs $(nproc)
     - cp config/database.yml.sample config/database.yml
@@ -67,7 +67,7 @@ feature_rspec:
     - selenium/standalone-chrome:latest
   stage: featues
   script:
-    - gem install bundler -v 2.1.2 --no-rdoc
+    - gem install bundler  -v 2.1.2 --no-document
     - bundle config set without 'production'
     - bundle check || bundle install --jobs $(nproc)
     - cp config/database.yml.sample config/database.yml
