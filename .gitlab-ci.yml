@@ -3,7 +3,8 @@ image: "ruby:2.6.3"
 stages:
   - build
   - rubocop
-  - tests
+  - unit
+  - feature
 
 variables:
   RAILS_ENV: "test"
@@ -39,7 +40,7 @@ rubocop:
 
 unit_rspec:
   <<: *default-cache
-  stage: tests
+  stage: unit
   script:
     - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev
     - curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add
@@ -63,7 +64,7 @@ feature_rspec:
   <<: *default-cache
   services:
     - selenium/standalone-chrome:latest
-  stage: tests
+  stage: feature
   script:
     - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev
     - curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add
@@ -80,4 +81,4 @@ feature_rspec:
     - export selenium_remote_url="http://selenium__standalone-chrome:4444/wd/hub/"
     - yarn install
     - RAILS_ENV=test ./bin/rails webpacker:compile
-    - rspec spec --exclude-pattern "**/features/**/*_spec.rb"
+    - rspec spec --tag type:feature
