@@ -42,7 +42,7 @@ rubocop:
   script:
     - gem install bundler  -v 2.1.2 --no-document
     - bundle config set without 'production'
-    - bundle check || bundle install --jobs $(nproc)
+    - bundle check || bundle install --jobs $(nproc) --path=vendor
     - bundle exec rubocop --require rubocop-performance
 
 unit_rspec:
@@ -51,10 +51,10 @@ unit_rspec:
   script:
     - gem install bundler  -v 2.1.2 --no-document
     - bundle config set without 'production'
-    - bundle check || bundle install --jobs $(nproc)
+    - bundle check || bundle install --jobs $(nproc) --path=vendor
     - cp config/database.yml.sample config/database.yml
     - bundle exec rake db:create db:schema:load
-    - yarn install
+    - yarn install --path=node_modules
     - RAILS_ENV=test ./bin/rails webpacker:compile
     - rspec spec --exclude-pattern "**/features/**/*_spec.rb"
   artifacts:
@@ -69,11 +69,11 @@ feature_rspec:
   script:
     - gem install bundler  -v 2.1.2 --no-document
     - bundle config set without 'production'
-    - bundle check || bundle install --jobs $(nproc)
+    - bundle check || bundle install --jobs $(nproc) --path=vendor
     - cp config/database.yml.sample config/database.yml
     - bundle exec rake db:create db:schema:load
     - apt-get install -y chromium
     - export selenium_remote_url="http://selenium__standalone-chrome:4444/wd/hub/"
-    - yarn install
+    - yarn install --path=node_modules
     - RAILS_ENV=test ./bin/rails webpacker:compile
     - rspec spec --exclude-pattern "**/features/**/*_spec.rb"
