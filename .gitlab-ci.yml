@@ -42,6 +42,7 @@ unit_rspec:
     - bundle exec rake db:create db:schema:load
     - yarn install
     - RAILS_ENV=test ./bin/rails webpacker:compile
+    - bundle check || bundle install --jobs $(nproc)
     - rspec spec --exclude-pattern "**/features/**/*_spec.rb"
   artifacts:
     paths:
@@ -58,4 +59,5 @@ feature_rspec:
     - export selenium_remote_url="http://selenium__standalone-chrome:4444/wd/hub/"
     - yarn install
     - RAILS_ENV=test ./bin/rails webpacker:compile
+    - bundle check || bundle install --jobs $(nproc)
     - rspec spec --tag type:feature
