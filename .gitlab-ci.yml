@@ -28,6 +28,7 @@ before_script:
   - gem install bundler  -v 2.1.2 --no-document
   - bundle config set path 'vendor/bundle'
   - bundle config set without 'production'
+  - bundle config set with 'development'
   - bundle check || bundle install --jobs $(nproc) "${FLAGS[@]}"
 
 rubocop:
