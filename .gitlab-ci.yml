@@ -33,6 +33,7 @@ before_script:
 rubocop:
   stage: rubocop
   script:
+    - gem list
     - bundle exec rubocop --require rubocop-performance
 
 unit_rspec:
