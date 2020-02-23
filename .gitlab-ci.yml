@@ -1,9 +1,7 @@
 image: "ruby:2.6.3"
 
 stages:
-  - rubocop
-  - unit
-  - feature
+  - tests
 
 variables:
   RAILS_ENV: "test"
@@ -12,9 +10,7 @@ variables:
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - node_modules/
     - vendor/bundle
-    - public/
 
 before_script:
   - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev
@@ -22,45 +18,30 @@ before_script:
   - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
   - curl -sL https://deb.nodesource.com/setup_10.x | bash -
   - apt-get update
-  - apt-get install -y nodejs yarn
+  - apt-get install -y nodejs
+  - apt-get install -y yarn
   - ruby -v
   - which ruby
   - gem install bundler  -v 2.1.2 --no-document
   - bundle config set path 'vendor/bundle'
   - bundle config set without 'production'
-  - bundle config set with 'development'
-  - bundle check || bundle install --jobs $(nproc) "${FLAGS[@]}"
+  - bundle check || bundle install --jobs $(nproc)
 
-rubocop:
-  stage: rubocop
-  script:
-    - gem list
-    - bundle exec rubocop --require rubocop-performance
-
-unit_rspec:
-  stage: unit
+rspec:
+  stage: tests
   script:
     - cp config/database.yml.sample config/database.yml
     - bundle exec rake db:create db:schema:load
+    - apt-get install -y chromium
     - yarn install
     - RAILS_ENV=test ./bin/rails webpacker:compile
-    - bundle check || bundle install --jobs $(nproc) "${FLAGS[@]}"
     - gem list
     - rspec spec --exclude-pattern "**/features/**/*_spec.rb"
   artifacts:
     paths:
       - coverage/
 
-feature_rspec:
-  stage: feature
-  services:
-    - selenium/standalone-chrome:latest
+rubocop:
+  stage: tests
   script:
-    - apt-get install -y chromium
-    - cp config/database.yml.sample config/database.yml
-    - bundle exec rake db:create db:schema:load
-    - export selenium_remote_url="http://selenium__standalone-chrome:4444/wd/hub/"
-    - yarn install
-    - RAILS_ENV=test ./bin/rails webpacker:compile
-    - bundle check || bundle install --jobs $(nproc) "${FLAGS[@]}"
-    - rspec spec --tag type:feature
+    - bundle exec rubocop --require rubocop-performance
