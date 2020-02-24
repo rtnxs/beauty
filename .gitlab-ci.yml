@@ -28,7 +28,6 @@ before_script:
   - gem install bundler  -v 2.1.2 --no-document
   - bundle config set path 'vendor/bundle'
   - bundle config set without 'production'
-  - bundle config set with 'development'
   - bundle check || bundle install --jobs $(nproc) "${FLAGS[@]}"
 
 rubocop:
@@ -55,7 +54,6 @@ feature_rspec:
   services:
     - selenium/standalone-chrome:latest
   script:
-    - apt-get install -y chromium
     - cp config/database.yml.sample config/database.yml
     - bundle exec rake db:create db:schema:load
     - export selenium_remote_url="http://selenium__standalone-chrome:4444/wd/hub/"
