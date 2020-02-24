@@ -95,5 +95,5 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.javascript_driver = :chrome
-Capybara.server_port = 3001
-Capybara.app_host = 'http://localhost:3001'
+Capybara.server_port = 4444
+Capybara.app_host = (ENV['selenium_remote_url'] || 'http://localhost:4444')
