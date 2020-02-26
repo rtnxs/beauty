@@ -1,0 +1,27 @@
+.poster{
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  background:#fff;
+  height:10px;
+  width:10px;
+}
+.descr{
+  display:none;
+  margin-left: 0px;
+  padding:10px;
+  margin-top:0px;
+  background:#f3f3f3;
+  height:200px;
+  -moz-box-shadow:0 5px 5px rgba(0,0,0,0.3);
+  -webkit-box-shadow:0 5px 5px rgba(0,0,0,0.3);
+  box-shadow:0 5px 5px rgba(0,0,0,0.3);
+}
+.poster:hover .descr{
+  display:block;
+  position:absolute;
+  z-index:9999;
+  width:200px;
+  height:320px;
+}

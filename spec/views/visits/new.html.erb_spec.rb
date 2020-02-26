@@ -25,7 +25,7 @@ RSpec.describe 'visits/new', type: :view do
       expect(page).to have_content("#{service1.name} (#{service1.price}")
       expect(page).to have_content("#{service2.name} (#{service2.price}")
       expect(page.find(:xpath, "//div[@class='form-actions']/input").value).to eql('Сохранить запись')
-      expect(page).to have_content('Для возврата к общему списку клиентов - воспользуйся меню слева')
+      expect(page).to have_content('Для возврата к общему списку всех визитов - воспользуйся меню слева')
 
       expect(page).to have_content('Доступные разделы')
       expect(page).to have_content('В начало')

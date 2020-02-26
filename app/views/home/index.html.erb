@@ -1,13 +1,47 @@
-<div class="container">
-  <div class="row">
-    <div class="alert-message">
-      <%= bootstrap_flash %>
-    </div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Beauty</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <h1>Home#index</h1>
-    <p>Find me in app/views/home/index.html.erb</p>
-    <%= link_to 'Визит', visits_path %>
-    <br/>
-    <%= link_to 'Войти', new_user_session_path %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="alert-message">
+        <%= bootstrap_flash %>
+      </div>
+
+      <div class="poster">
+        <div class="descr">
+          Меню<br>
+          <% if user_signed_in? %>
+            <p><%= link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'btn btn-info navbar-btn' %></p>
+            <%= link_to 'В начало', staff_index_path %><br>
+            <%= link_to 'Список визитов', visits_path %><br>
+            <%= link_to 'Список расходов', expenses_path %><br>
+            <%= link_to 'Список клиентов', clients_path %><br>
+            <%= link_to 'Список услуг', services_path %><br>
+            <%= link_to 'Список типов', types_path %><br>
+          <% else %>
+            <%= link_to 'Войти', new_user_session_path, class: 'btn btn-info navbar-btn' %>
+          <% end %>
+        </div>
+      </div>
+
+      <h1>Студия красоты</h1>
+      <p>Здесь обязательно появится Lending page, но попозже =)</p>
+
+    </div>
   </div>
 </div>
+
+</body>
+</html>
