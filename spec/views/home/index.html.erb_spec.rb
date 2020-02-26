@@ -15,7 +15,7 @@ RSpec.describe 'home/index.html.erb', type: :view do
       expect(page).not_to have_content('Добавить новый визит')
       expect(page).not_to have_content('Добавить новый расход')
       expect(page).not_to have_content('Справочники')
-      expect(page).not_to have_content('Войти')
+      expect(page).not_to have_content('Выйти')
     end
   end
 end

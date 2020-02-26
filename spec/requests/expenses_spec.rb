@@ -7,22 +7,22 @@ RSpec.describe 'Expenses', type: :request do
 
   it 'creates a Expense' do
     get '/expenses/new'
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'show a Expense' do
     get "/expenses/#{expense.id}"
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'edit a Expense' do
     get "/expenses/#{expense.id}/edit"
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'show all Expenses' do
     get '/expenses'
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'create new Expense' do

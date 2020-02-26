@@ -7,22 +7,22 @@ RSpec.describe 'Clients', type: :request do
 
   it 'creates a Client' do
     get '/clients/new'
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'show a Client' do
     get "/clients/#{client.id}"
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'edit a Client' do
     get "/clients/#{client.id}/edit"
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'show all Clients' do
     get '/clients'
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'create new Client' do

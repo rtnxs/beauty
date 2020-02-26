@@ -1,30 +1,25 @@
 # frozen_string_literal: true
 
 class TypesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_type, only: %i[show edit update destroy]
+  before_action :set_new_type, only: %i[index new]
 
-  # GET /types
-  # GET /types.json
   def index
     @types = Type.all
   end
 
-  # GET /types/1
-  # GET /types/1.json
   def show; end
 
-  # GET /types/new
   def new
     @type = Type.new
   end
 
-  # GET /types/1/edit
   def edit; end
 
-  # POST /types
-  # POST /types.json
   def create
     @type = Type.new(type_params)
+    authorize(@type)
 
     respond_to do |format|
       if @type.save
@@ -35,8 +30,6 @@ class TypesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /types/1
-  # PATCH/PUT /types/1.json
   def update
     respond_to do |format|
       if @type.update(type_params)
@@ -47,8 +40,6 @@ class TypesController < ApplicationController
     end
   end
 
-  # DELETE /types/1
-  # DELETE /types/1.json
   def destroy
     @type.destroy
     respond_to do |format|
@@ -58,12 +49,16 @@ class TypesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_type
     @type = Type.find(params[:id])
+    authorize(@type)
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  def set_new_type
+    @type = Type.new
+    authorize(@type)
+  end
+
   def type_params
     params.require(:type).permit(:name)
   end

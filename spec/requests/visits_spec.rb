@@ -7,22 +7,22 @@ RSpec.describe 'Visits', type: :request do
 
   it 'creates a Visit' do
     get '/visits/new'
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'show a Visit' do
     get "/visits/#{visit.id}"
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'edit a Visit' do
     get "/visits/#{visit.id}/edit"
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'show all Visits' do
     get '/expenses'
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'create new Visit' do

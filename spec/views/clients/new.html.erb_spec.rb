@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'clients/new', type: :view do
+  let(:user) { create(:user) }
+
+  before do
+    log_in user
+  end
+
   it 'renders new client form' do
     visit new_client_path
 
@@ -18,6 +24,6 @@ RSpec.describe 'clients/new', type: :view do
     expect(page).to have_content('Добавить новый визит')
     expect(page).to have_content('Добавить новый расход')
     expect(page).to have_content('Справочники')
-    expect(page).to have_content('Войти')
+    expect(page).to have_content('Выйти')
   end
 end

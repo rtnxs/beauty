@@ -1,0 +1,8 @@
+ru:
+  activerecord:
+    attributes:
+      user:
+        name: Имя
+
+  pundit:
+    not_authorized: Доступно только администратору
