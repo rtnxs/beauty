@@ -4,9 +4,11 @@ require 'rails_helper'
 
 RSpec.describe 'visits/edit', type: :feature, js: true do
   let(:client_visit) { create(:visit) }
+  let(:user) { create(:admin_user) }
 
   before do
     create(:client, name: 'Клавдия Ивановна Пушок')
+    log_in user
   end
 
   it 'changes client for visit' do
