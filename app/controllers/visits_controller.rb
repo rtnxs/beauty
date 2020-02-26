@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class VisitsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_visit, only: %i[show edit update destroy]
+  before_action :set_new_visit, only: %i[index new]
   protect_from_forgery except: :create
 
   def index
@@ -12,7 +14,6 @@ class VisitsController < ApplicationController
   def show; end
 
   def new
-    @visit = Visit.new
     @client = @visit.build_client
   end
 
@@ -20,6 +21,7 @@ class VisitsController < ApplicationController
 
   def create
     @visit = Visit.new(visit_params)
+    authorize(@visit)
     @client = Client.find_or_create_by(visit_params[:client_attributes])
 
     @visit.client = @client
@@ -55,6 +57,12 @@ class VisitsController < ApplicationController
 
   def set_visit
     @visit = Visit.find(params[:id])
+    authorize(@visit)
+  end
+
+  def set_new_visit
+    @visit = Visit.new
+    authorize(@visit)
   end
 
   def visit_params

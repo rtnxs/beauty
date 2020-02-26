@@ -17,9 +17,15 @@ RSpec.describe VisitsController, type: :controller do
     }
   end
   let(:valid_session) { {} }
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
 
   describe 'GET #index' do
     it 'returns a success response' do
+      user.update(admin: true)
       Visit.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful

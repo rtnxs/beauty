@@ -4,6 +4,11 @@ require 'rails_helper'
 
 RSpec.describe 'clients/show', type: :view do
   let(:client) { create(:client) }
+  let(:user) { create(:user) }
+
+  before do
+    log_in user
+  end
 
   it 'renders attributes in <p>' do
     visit client_path(client)
@@ -20,7 +25,7 @@ RSpec.describe 'clients/show', type: :view do
       expect(page).to have_content('Добавить новый визит')
       expect(page).to have_content('Добавить новый расход')
       expect(page).to have_content('Справочники')
-      expect(page).to have_content('Войти')
+      expect(page).to have_content('Выйти')
     end
   end
 end

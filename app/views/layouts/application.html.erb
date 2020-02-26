@@ -15,59 +15,79 @@
 <div class="wrapper">
   <!-- Sidebar  -->
   <nav id="sidebar">
-    <div class="sidebar-header">
-      <h3>Доступные разделы</h3>
-    </div>
-    <ul class="list-unstyled components">
-      <li>
-        <%= link_to 'В начало', staff_index_path %>
-      </li>
-      <li>
-        <a href="#visitSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Визиты</a>
-        <ul class="collapse list-unstyled" id="visitSubmenu">
-          <li>
-            <%= link_to 'Список всех визитов', visits_path %>
-          </li>
-          <li>
-            <%= link_to 'Добавить новый визит', new_visit_path %>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#expenseSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Расходы</a>
-        <ul class="collapse list-unstyled" id="expenseSubmenu">
-          <li>
-            <%= link_to 'Список всех расходов', expenses_path %>
-          </li>
-          <li>
-            <%= link_to 'Добавить новый расход', new_expense_path %>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#clientSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Клиенты</a>
-        <ul class="collapse list-unstyled" id="clientSubmenu">
-          <li>
-            <%= link_to 'Список всех клиентов', clients_path %>
-          </li>
-          <li>
-            <%= link_to 'Добавить новго клиента', new_client_path %>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Справочники</a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li>
-            <%= link_to 'Список услуг', services_path %>
-          </li>
-          <li>
-            <%= link_to 'Тип расхода', types_path %>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <% if current_user.present? %>
+      <div class="sidebar-header">
+        <h3>Доступные разделы</h3>
+      </div>
+      <ul class="list-unstyled components">
+        <li>
+          <%= link_to 'В начало', staff_index_path %>
+        </li>
 
+        <% if policy(User).update? %>
+          <li>
+            <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Соотрудники</a>
+            <ul class="collapse list-unstyled" id="userSubmenu">
+              <li>
+                <%= link_to 'Список всех пользователей', users_path %>
+              </li>
+              <li>
+                <%= link_to 'Добавить нового пользователя', new_user_registration_path %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
+
+        <li>
+          <a href="#visitSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Визиты</a>
+          <ul class="collapse list-unstyled" id="visitSubmenu">
+            <li>
+              <%= link_to 'Список всех визитов', visits_path %>
+            </li>
+            <li>
+              <%= link_to 'Добавить новый визит', new_visit_path %>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#expenseSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Расходы</a>
+          <ul class="collapse list-unstyled" id="expenseSubmenu">
+            <li>
+              <%= link_to 'Список всех расходов', expenses_path %>
+            </li>
+            <li>
+              <%= link_to 'Добавить новый расход', new_expense_path %>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#clientSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Клиенты</a>
+          <ul class="collapse list-unstyled" id="clientSubmenu">
+            <li>
+              <%= link_to 'Список всех клиентов', clients_path %>
+            </li>
+            <li>
+              <%= link_to 'Добавить новго клиента', new_client_path %>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Справочники</a>
+          <ul class="collapse list-unstyled" id="homeSubmenu">
+            <% if policy(Service).show? %>
+              <li>
+                <%= link_to 'Список услуг', services_path %>
+              </li>
+            <% end %>
+            <% if policy(Type).show? %>
+              <li>
+                <%= link_to 'Тип расхода', types_path %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    <% end %>
     <ul class="list-unstyled CTAs">
       <% if user_signed_in? %>
         <%= link_to 'Выйти', destroy_user_session_path,

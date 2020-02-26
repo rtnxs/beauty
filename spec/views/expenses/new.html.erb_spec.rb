@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'expenses/new', type: :view do
+  let(:user) { create(:user) }
+
+  before do
+    log_in user
+  end
+
   it 'renders new expense form' do
     visit new_expense_path
 
@@ -20,7 +26,7 @@ RSpec.describe 'expenses/new', type: :view do
       expect(page).to have_content('Добавить новый визит')
       expect(page).to have_content('Добавить новый расход')
       expect(page).to have_content('Справочники')
-      expect(page).to have_content('Войти')
+      expect(page).to have_content('Выйти')
     end
   end
 end

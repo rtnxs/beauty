@@ -13,6 +13,11 @@ RSpec.describe ServicesController, type: :controller do
     }
   end
   let(:valid_session) { {} }
+  let(:admin_user) { create(:admin_user) }
+
+  before do
+    sign_in admin_user
+  end
 
   describe 'GET #index' do
     it 'returns a success response' do

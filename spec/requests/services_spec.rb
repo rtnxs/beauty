@@ -7,22 +7,22 @@ RSpec.describe 'Services', type: :request do
 
   it 'creates a Service' do
     get '/services/new'
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'show a Service' do
     get "/services/#{service.id}"
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'edit a Service' do
     get "/services/#{service.id}/edit"
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'show all Services' do
     get '/services'
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(302)
   end
 
   it 'create new Service' do

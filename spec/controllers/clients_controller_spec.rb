@@ -10,6 +10,11 @@ RSpec.describe ClientsController, type: :controller do
     { name: nil, phone: nil, note: nil }
   end
   let(:valid_session) { {} }
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
 
   describe 'GET #index' do
     it 'returns a success response' do

@@ -2,6 +2,8 @@
 
 class StaffController < ApplicationController
   def index
+    authorize(current_user)
+
     @visits = Visit.where(
       'datetime BETWEEN ? AND ?',
       Time.current.beginning_of_month,

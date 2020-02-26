@@ -6,6 +6,11 @@ RSpec.describe 'visits/new', type: :view do
   let(:client_visit) { create(:visit) }
   let!(:service1) { create(:service) }
   let!(:service2) { create(:service) }
+  let(:user) { create(:user) }
+
+  before do
+    log_in user
+  end
 
   it 'renders new visit form' do
     visit new_visit_path
@@ -27,7 +32,7 @@ RSpec.describe 'visits/new', type: :view do
       expect(page).to have_content('Добавить новый визит')
       expect(page).to have_content('Добавить новый расход')
       expect(page).to have_content('Справочники')
-      expect(page).to have_content('Войти')
+      expect(page).to have_content('Выйти')
     end
   end
 end
