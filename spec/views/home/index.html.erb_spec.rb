@@ -7,8 +7,8 @@ RSpec.describe 'home/index.html.erb', type: :view do
     visit root_path
 
     aggregate_failures 'expected result' do
-      expect(page).to have_content('Home#index')
-      expect(page).to have_content('Find me in app/views/home/index.html.erb')
+      expect(page).to have_content('Студия красоты')
+      expect(page).to have_content('Здесь обязательно появится Lending page, но попозже =)')
 
       expect(page).not_to have_content('Доступные разделы')
       expect(page).not_to have_content('В начало')
